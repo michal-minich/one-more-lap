@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <script>
+        if (navigator.standalone === true || matchMedia("(display-mode: standalone)").matches) {
+            const viewport = document.querySelector('meta[name="viewport"]');
+            viewport.content += ", minimum-scale=1, maximum-scale=1, user-scalable=no";
+        }
+    </script>
+    <meta name="theme-color" content="#161c24">
+    <meta name="description" content="An offline 3D racer on scenic circuits.">
+    <title>One More Lap · Follow the Road</title>
+    <link rel="canonical" href="https://possible-matter.com/one-more-lap/">
+    <meta name="apple-mobile-web-app-title" content="One More Lap">
+    <link rel="icon" href="./icon-192.png">
+    <link rel="apple-touch-icon" href="./icon-192.png">
+</head>
+<body>
+<svg class="svg-definitions" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="icon-car" viewBox="0 0 24 24"><path d="m4 11 2-5h12l2 5M3 11h18v7H3zM5 18v2m14-2v2M7 14h2m6 0h2"/></symbol>
+    <symbol id="icon-flag" viewBox="0 0 24 24"><path d="M5 21V4m0 1c5-4 9 4 14 0v11c-5 4-9-4-14 0"/><path d="M10 5v10m4-8v10M5 10c5-4 9 4 14 0"/></symbol>
+    <symbol id="icon-boost" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 10-13h-7z"/></symbol>
+    <symbol id="icon-jump" viewBox="0 0 24 24"><path d="M4 16h16v4H4zM8 12l4-4 4 4M8 7l4-4 4 4"/></symbol>
+    <symbol id="icon-magnet" viewBox="0 0 24 24"><path d="M4 6v7a8 8 0 0 0 16 0V6h-5v7a3 3 0 0 1-6 0V6zM4 9h5m6 0h5"/></symbol>
+    <symbol id="icon-tires" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="m6 5 2 3m10-3-2 3M6 19l2-3m10 3-2-3M3 12h5m8 0h5"/></symbol>
+    <symbol id="icon-bumpers" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 4.5 4 7.5 8 9 4-1.5 8-4.5 8-9V6zM8 12l3 3 5-6"/></symbol>
+    <symbol id="icon-splash" viewBox="0 0 24 24"><path d="M12 2c2 4 5 6 5 9a5 5 0 0 1-10 0c0-3 3-5 5-9zM3 18c2-2 4-2 6 0s4 2 6 0 4-2 6 0M3 22c2-2 4-2 6 0m6 0c2-2 4-2 6 0"/></symbol>
+    <symbol id="icon-traction" viewBox="0 0 24 24"><path d="M8 3h8l2 4v5H6V7zM6 9h12m-9 7c0 2-4 2-4 5m14-5c0 2-4 2-4 5"/></symbol>
+    <symbol id="icon-pit" viewBox="0 0 24 24"><path d="M14 4a6 6 0 0 0-6 8l-5 5a2.8 2.8 0 0 0 4 4l5-5a6 6 0 0 0 8-6l-4 3-3-3 3-4z"/></symbol>
+    <symbol id="icon-teleport" viewBox="0 0 24 24"><path d="m7 5 7 7-7 7m7-14 7 7-7 7M2 8h3m-3 8h3"/></symbol>
+    <symbol id="icon-owned" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></symbol>
+    <symbol id="icon-lock" viewBox="0 0 24 24"><path d="M7 10V7a5 5 0 0 1 10 0v3M5 10h14v11H5zM12 14v3"/></symbol>
+    <symbol id="icon-left" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></symbol>
+    <symbol id="icon-right" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="icon-sound" viewBox="0 0 24 24"><path d="M3 9h4l5-4v14l-5-4H3zm12 0a5 5 0 0 1 0 6m3-9a9 9 0 0 1 0 12"/></symbol>
+    <symbol id="icon-music" viewBox="0 0 24 24"><path d="M9 17V5l11-2v12M9 8l11-2"/><ellipse cx="6" cy="17.5" rx="3" ry="2.5"/><ellipse cx="17" cy="15.5" rx="3" ry="2.5"/></symbol>
+    <symbol id="icon-controls" viewBox="0 0 24 24"><path d="M8 7h8c2 0 3 1 4 3l1 5c.6 3-2 4-4 2l-2-2H9l-2 2c-2 2-4.6 1-4-2l1-5c1-2 2-3 4-3zM8 9v4m-2-2h4m5-1h.1m2 3h.1"/></symbol>
+    <symbol id="icon-refresh" viewBox="0 0 24 24"><path d="M19.6 9A8 8 0 1 0 20 14m0-11v6h-6"/></symbol>
+    <symbol id="icon-play" viewBox="0 0 24 24"><path d="m8 4 13 8-13 8z"/></symbol>
+    <symbol id="icon-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10H3zM8 20v-6h8v6"/></symbol>
+    <symbol id="icon-recover" viewBox="0 0 24 24"><path d="M5 19v-6a5 5 0 0 1 5-5h9m-5-5 5 5-5 5"/></symbol>
+    <symbol id="icon-forward" viewBox="0 0 24 24"><path d="M4 12h16m-7-7 7 7-7 7"/></symbol>
+    <symbol id="icon-reverse" viewBox="0 0 24 24"><path d="M20 12H4m7-7-7 7 7 7"/></symbol>
+    <symbol id="icon-pause" viewBox="0 0 24 24"><path d="M8 5v14m8-14v14"/></symbol>
+    <symbol id="icon-camera" viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="13" cy="6" r="3"/><rect x="3" y="9" width="13" height="11" rx="2"/><path d="m16 13 5-3v9l-5-3"/></symbol>
+    <symbol id="icon-clear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3M5 5l2 2m10 10 2 2M19 5l-2 2M7 17l-2 2"/></symbol>
+    <symbol id="icon-rain" viewBox="0 0 24 24"><path d="M6 14a4 4 0 0 1 0-8 5 5 0 0 1 9-1 4 4 0 0 1 3 9zM8 17l-1 3m5-3-1 3m5-3-1 3"/></symbol>
+    <symbol id="icon-snow" viewBox="0 0 24 24"><path d="M12 2v20M3 7l18 10M3 17 21 7M9 4l3 3 3-3M9 20l3-3 3 3M3 10l4-1-1-4m12 14-1-4 4-1M3 14l4 1-1 4m12-14-1 4 4 1"/></symbol>
+    <symbol id="icon-fog" viewBox="0 0 24 24"><path d="M5 8h14M2 12h16m-11 4h15M4 20h11"/></symbol>
+    <symbol id="icon-sunrise" viewBox="0 0 24 24"><path d="M3 18h18M7 15a5 5 0 0 1 10 0M12 4v4m-7 2 2 2m12-2-2 2"/></symbol>
+    <symbol id="icon-sunset" viewBox="0 0 24 24"><path d="M3 17h18M7 15a5 5 0 0 1 10 0m-5-9v4M6 8l2 2m10-2-2 2M7 21h10"/></symbol>
+    <symbol id="icon-night" viewBox="0 0 24 24"><path d="M20 14A8 8 0 0 1 10 4a8 8 0 1 0 10 10zM17 4v4m-2-2h4"/></symbol>
+    <symbol id="icon-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5m0-8h.01"/></symbol>
+    <symbol id="icon-paint" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0 0 18h1a2 2 0 0 0 1.4-3.4 1.4 1.4 0 0 1 1-2.4H18c1.7 0 3-1.4 3-3.1A9 9 0 0 0 12 3Z"/><path d="M7.5 12h.01M10 7.8h.01M15 7.8h.01M17.5 11.5h.01" stroke-width="2.5"/></symbol>
+</svg>
+<header class="topbar">
+    <a class="wordmark" href="./" aria-label="One More Lap home"><img src="./src/ui/route-mark.svg" alt=""><span class="wordmark-copy"><strong>One More Lap</strong><span>Follow the Road</span></span></a>
+    <button type="button" id="update-game" class="quiet top-update" hidden disabled><svg class="icon" aria-hidden="true"><use href="#icon-refresh"/></svg><span>New updated game version available</span></button>
+    <div class="top-actions">
+        <span class="connection" id="offline-status" role="status" hidden></span>
+        <button type="button" class="quiet icon-button" data-audio="music" title="Music on" aria-label="Music" aria-pressed="true"><svg class="icon" aria-hidden="true"><use href="#icon-music"/><path class="audio-off" d="M3 3l18 18"/></svg></button>
+        <button type="button" class="quiet icon-button" data-audio="effects" title="Sound effects on" aria-label="Sound effects" aria-pressed="true"><svg class="icon" aria-hidden="true"><use href="#icon-sound"/><path class="audio-off" d="M3 3l18 18"/></svg></button>
+        <button type="button" id="help" class="quiet icon-button" title="Controls" aria-label="Controls"><svg class="icon" aria-hidden="true"><use href="#icon-controls"/></svg></button>
+        <button type="button" id="about-game" class="quiet icon-button" aria-label="About One More Lap" title="About"><svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg></button>
+    </div>
+</header>
+<main class="garage-layout">
+    <h1 class="sr-only">Garage</h1>
+    <section class="hero" aria-label="Car preview">
+        <div id="view"></div>
+        <div id="water-tint" aria-hidden="true"></div>
+        <svg id="speed-streaks" class="driving-effect" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+                <radialGradient id="speed-edge" cx=".5" cy=".47" r=".68">
+                    <stop offset=".32" stop-color="#d4f4ff" stop-opacity="0"/>
+                    <stop offset=".69" stop-color="#d4f4ff" stop-opacity=".60"/>
+                    <stop offset="1" stop-color="#f2fbff" stop-opacity=".80"/>
+                </radialGradient>
+            </defs>
+            <path class="speed-rays" d="M149 227 24 203M174 164 79 126M275 149 222 119M309 116 235 54M416 124 387 64M45 385 177 352M132 466 241 413M249 503 319 446M360 548 404 465M618 109 658 54M685 132 750 80M762 155 861 105M814 202 938 167M856 269 980 265M829 348 966 374M781 403 884 447M700 447 780 524M608 475 649 557"/>
+            <path class="speed-rays speed-rays-delayed" d="M82 245 11 236M165 208 81 189M223 147 173 120M318 119 251 48M398 104 365 47M549 112 559 60M678 108 735 47M751 152 823 105M844 203 950 178M816 242 887 230M824 317 930 327M815 373 951 410M746 421 850 479M642 451 697 517M587 497 610 555M438 480 412 543M299 444 228 499M218 396 121 434M150 338 21 361"/>
+        </svg>
+        <svg id="impact-glass" class="driving-effect" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+                <path id="crack-path" d="M787 264 807 242 802 218 821 189 824 158 861 109 873 65 899 0
+                    M787 264 818 260 850 244 880 247 911 228 946 223 1000 194
+                    M787 264 814 279 835 311 874 323 897 348 950 349 1000 382
+                    M787 264 800 303 796 333 815 371 807 422 829 468 830 501
+                    M787 264 763 287 737 293 706 326 673 337 629 381
+                    M787 264 763 249 740 246 710 223 671 218 624 191
+                    M787 264 783 238 763 217 759 187 735 150 737 117
+                    M802 218 784 219 763 217 740 246 737 293 770 313 796 333 835 311 849 284 850 244 822 224 802 218
+                    M824 158 798 145 785 120M861 109 895 104 920 87M880 247 907 266 930 271
+                    M874 323 882 298 916 288M815 371 845 381 861 405M706 326 710 353 700 378
+                    M710 223 708 199 691 182M763 287 761 271 763 249"/>
+            </defs>
+            <path class="crack-shards" d="M787 264 807 242 802 218 784 219 763 217 783 238Z
+                M787 264 818 260 850 244 849 284 835 311 814 279Z M787 264 763 287 737 293 770 313 796 333 800 303Z"/>
+            <use class="crack-shadow" href="#crack-path"/>
+            <use class="crack-edge" href="#crack-path"/>
+        </svg>
+        <div class="hero-overlay">
+            <div class="hero-cycle">
+                <button type="button" id="track-prev" class="hero-arrow" aria-label="Previous track"><svg class="icon" aria-hidden="true"><use href="#icon-left"/></svg></button>
+                <h2 id="hero-track" aria-live="polite"></h2>
+                <button type="button" id="track-next" class="hero-arrow" aria-label="Next track"><svg class="icon" aria-hidden="true"><use href="#icon-right"/></svg></button>
+            </div>
+            <p id="track-description"></p>
+            <canvas class="hero-route" id="map" width="304" height="162" role="img" aria-label="Track outline"></canvas>
+        </div>
+        <div class="hero-car">
+            <p id="car-layout" class="eyebrow"></p>
+            <div class="hero-cycle">
+                <button type="button" id="car-prev" class="hero-arrow" aria-label="Previous car"><svg class="icon" aria-hidden="true"><use href="#icon-left"/></svg></button>
+                <h2 id="car-title" aria-live="polite"></h2>
+                <button type="button" id="car-next" class="hero-arrow" aria-label="Next car"><svg class="icon" aria-hidden="true"><use href="#icon-right"/></svg></button>
+            </div>
+            <p id="car-description"></p>
+            <div class="car-unlock" id="car-unlock" hidden>
+                <svg class="icon" aria-hidden="true"><use href="#icon-lock"/></svg>
+                <strong>Unlock car</strong>
+                <button type="button" id="buy-car" class="quiet"></button>
+            </div>
+        </div>
+        <div id="paint-control" class="paint-control" hidden>
+            <button id="choose-paint" type="button" class="paint-trigger" aria-label="Choose paint" aria-controls="paint" aria-expanded="false"><svg class="icon" aria-hidden="true"><use href="#icon-paint"/></svg></button>
+            <div id="paint" class="paint-options" role="group" aria-label="Paint colors" hidden></div>
+        </div>
+        <span id="backend" class="sr-only"></span>
+        <p class="load-message" id="load-message" role="status">Preparing garage…</p>
+        <div class="race-ui" id="race-ui" hidden>
+            <div class="driving-pads" id="driving-pads" aria-hidden="true" hidden></div>
+            <div class="race-top">
+                <div class="race-audio" role="group" aria-label="Garage and audio">
+                    <button type="button" id="back" class="quiet icon-button" aria-label="Garage" title="Garage"><svg class="icon" aria-hidden="true"><use href="#icon-home"/></svg></button>
+                    <button type="button" class="quiet icon-button" data-audio="music" title="Music on" aria-label="Music" aria-pressed="true"><svg class="icon" aria-hidden="true"><use href="#icon-music"/><path class="audio-off" d="M3 3l18 18"/></svg></button>
+                    <button type="button" class="quiet icon-button" data-audio="effects" title="Sound effects on" aria-label="Sound effects" aria-pressed="true"><svg class="icon" aria-hidden="true"><use href="#icon-sound"/><path class="audio-off" d="M3 3l18 18"/></svg></button>
+                </div>
+                <div class="race-course">
+                    <div class="race-course-info">
+                        <strong class="free-ride-label" id="free-ride-label" hidden>Free ride</strong>
+                        <div class="race-metric lap-metric" id="lap-metric">
+                            <span>Lap</span><strong id="race-lap" aria-live="polite">1 / 3</strong>
+                            <progress id="progress" max="1" value="0" aria-label="Lap progress"></progress>
+                        </div>
+                        <div class="race-metric" id="position-metric" hidden><span>Position</span><strong id="race-place"></strong></div>
+                    </div>
+                </div>
+                <div class="race-actions">
+                    <button type="button" id="quick-recover" class="quiet" aria-label="Recover to road"><svg class="icon" aria-hidden="true"><use href="#icon-recover"/></svg><span>Recover</span></button>
+                    <button type="button" id="camera" class="quiet icon-button" aria-label="First person" title="First person" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#icon-camera"/></svg></button>
+                    <button type="button" id="pause" class="quiet icon-button" aria-label="Pause" title="Pause"><svg class="icon" aria-hidden="true"><use href="#icon-pause"/></svg></button>
+                </div>
+            </div>
+            <div class="race-side">
+                <canvas class="race-map" id="race-map" width="188" height="104" aria-label="Circuit map"></canvas>
+            </div>
+            <div class="race-countdown" id="race-countdown" role="status" hidden></div>
+            <div class="race-warning" id="race-warning" role="status" hidden></div>
+            <div class="bend-warning" id="bend-warning" hidden>
+                <span id="bend-arrow" aria-hidden="true"></span><span id="bend-text"></span>
+            </div>
+            <div class="race-readout">
+                <div class="race-instruments" id="race-instruments">
+                    <div class="speed-dial" id="speed-dial">
+                        <img class="speed-face" id="speed-face" alt="">
+                        <div class="speed-value"><strong id="speed">0</strong><span>km/h</span></div>
+                        <svg class="speed-needle" viewBox="0 0 84 84" aria-hidden="true">
+                            <circle class="needle-face" cx="42" cy="42" r="40"/>
+                            <g id="speed-ticks"></g>
+                            <g class="needle-hand"><path d="M40 50 42 13 44 50Z"/></g>
+                            <circle class="needle-hub" cx="42" cy="42" r="3.4"/>
+                        </svg>
+                        <div class="speed-scale" aria-hidden="true"><i></i></div>
+                        <div class="speed-tape" aria-hidden="true"><div id="speed-tape-marks"></div></div>
+                        <svg class="speed-flight" viewBox="0 0 180 62" aria-hidden="true">
+                            <path class="flight-track" d="M71 54H47L22 32 47 10H71 M109 54H133L158 32 133 10H109"/>
+                            <path class="flight-marks" d="M17 27 12 32 17 37 M163 27 168 32 163 37 M60 5H72 M108 5H120 M79 57H101"/>
+                            <path class="flight-fill" d="M71 54H47L22 32 47 10H71" pathLength="1"/>
+                            <path class="flight-fill" d="M109 54H133L158 32 133 10H109" pathLength="1"/>
+                        </svg>
+                    </div>
+                    <div class="clocks" id="race-clocks">
+                        <div class="race-metric"><span>Race time</span><strong id="elapsed">00:00</strong></div>
+                        <div class="race-metric"><span id="lap-time-label">Lap time</span><strong id="lap-time">00:00</strong></div>
+                    </div>
+                </div>
+                <div id="pace" hidden>
+                    <div><span>Best lap pace</span><strong id="pace-delta"></strong></div>
+                    <div class="pace-bar" aria-hidden="true"><i id="pace-mark"></i></div>
+                </div>
+                <div class="condition">
+                    <div id="race-powers" class="power-controls" hidden>
+                        <button type="button" id="race-jump" class="quiet" aria-keyshortcuts="E" hidden><svg class="icon" aria-hidden="true"><use href="#icon-jump"/></svg><span>Jump <kbd>[E]</kbd></span><small></small></button>
+                        <button type="button" id="race-boost" class="quiet" aria-keyshortcuts="Space" hidden><svg class="icon" aria-hidden="true"><use href="#icon-boost"/></svg><span>Boost <kbd>[Space]</kbd></span><small></small></button>
+                        <button type="button" id="race-teleport" class="quiet" aria-keyshortcuts="F" hidden><svg class="icon" aria-hidden="true"><use href="#icon-teleport"/></svg><span>Teleport <kbd>[F]</kbd></span><small></small></button>
+                    </div>
+                    <span id="damage-state" hidden></span>
+                    <div class="race-stats">
+                        <div class="race-metric">
+                            <span>Coins</span>
+                            <strong class="coin-count race-wallet"><i aria-hidden="true"></i><b id="race-coins">0</b><b id="race-earned" aria-live="polite" hidden></b></strong>
+                        </div>
+                        <div class="race-metric"><span>Damage</span><strong id="damage">0%</strong></div>
+                    </div>
+                    <progress id="damage-bar" aria-label="Vehicle damage" max="100" value="0"></progress>
+                </div>
+            </div>
+            <p class="record-badge" id="record-badge" role="status" hidden><span aria-hidden="true">🏆</span> <span id="record-text"></span></p>
+            <section class="race-finish" id="race-finish" aria-labelledby="finish-title" hidden>
+                <h2 id="finish-title">Race complete</h2>
+                <div class="finish-stats" role="status">
+                    <div class="finish-metric finish-rank" id="finish-position">
+                        <svg id="finish-cup" viewBox="0 0 40 46" aria-hidden="true">
+                            <path class="cup-handles" d="M12 9H3v3a9 9 0 0 0 10 9m15-12h9v3a9 9 0 0 1-10 9"/>
+                            <path class="cup-shape" d="M9 5h22v9c0 8-4 13-9 14v7h5l3 4v3H10v-3l3-4h5v-7c-5-1-9-6-9-14Z"/>
+                            <path class="cup-highlight" d="M13 8h13m-12 4v3c0 4 1 7 4 9m-3 15h9"/>
+                        </svg>
+                        <div class="race-metric"><span>Position</span><strong id="finish-place"></strong></div>
+                    </div>
+                    <div class="race-metric finish-metric"><span>Race time</span><strong id="finish-time"></strong></div>
+                    <div class="race-metric finish-metric" id="finish-best"><span>Best race</span><strong id="finish-record"></strong></div>
+                </div>
+                <button type="button" id="keep-driving" class="quiet">Keep driving</button>
+            </section>
+            <div class="race-message" id="race-message" hidden>
+                <div class="pause-header">
+                    <h2 id="race-result"></h2>
+                    <div class="pause-audio" id="pause-audio" role="group" aria-label="Audio">
+                        <button type="button" class="quiet icon-button" data-audio="music" title="Music on" aria-label="Music" aria-pressed="true"><svg class="icon" aria-hidden="true"><use href="#icon-music"/><path class="audio-off" d="M3 3l18 18"/></svg></button>
+                        <button type="button" class="quiet icon-button" data-audio="effects" title="Sound effects on" aria-label="Sound effects" aria-pressed="true"><svg class="icon" aria-hidden="true"><use href="#icon-sound"/><path class="audio-off" d="M3 3l18 18"/></svg></button>
+                    </div>
+                </div>
+                <p id="race-detail"></p>
+                <div class="pause-conditions" id="pause-conditions" hidden>
+                    <div><h3>Time of day</h3><div id="pause-times" class="graphic-options" aria-label="Time of day"></div></div>
+                    <div><h3>Weather</h3><div id="pause-weathers" class="graphic-options" aria-label="Weather"></div></div>
+                </div>
+                <button type="button" id="resume" class="primary"><svg class="icon" aria-hidden="true"><use href="#icon-play"/></svg> Resume</button>
+                <div class="pause-actions">
+                    <button type="button" id="retry" class="quiet"><svg class="icon" aria-hidden="true"><use href="#icon-refresh"/></svg> Restart</button>
+                    <button type="button" id="recover" class="quiet"><svg class="icon" aria-hidden="true"><use href="#icon-recover"/></svg> Recover</button>
+                    <button type="button" id="menu-garage" class="quiet icon-button" aria-label="Garage" title="Garage"><svg class="icon" aria-hidden="true"><use href="#icon-home"/></svg></button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="garage-dashboard">
+            <div class="car-stats">
+                <div><span>Top speed</span><strong id="car-top-speed"></strong><span class="car-meter" id="car-speed-meter"></span></div>
+                <div><span>Turn-in</span><span class="car-meter" id="car-turn-meter"></span></div>
+                <div><span>Loose grip</span><span class="car-meter" id="car-grip-meter"></span></div>
+                <div><span>Drifting</span><span class="car-meter" id="car-drift-meter"></span></div>
+                <div class="drive-stat"><strong id="car-drive"></strong></div>
+            </div>
+        <button type="button" id="continue-race" class="start-race" aria-label="Continue to race setup" disabled><svg class="icon" aria-hidden="true"><use href="#icon-play"/></svg></button>
+    </div>
+    <dialog id="garage-setup" class="garage-console" aria-label="Race setup">
+        <header class="setup-header">
+            <div class="setup-selection"><h2 id="setup-track"></h2><p id="setup-car"></p></div>
+            <div class="garage-tabs" role="tablist" aria-label="Race setup">
+            <button type="button" id="race-tab" role="tab" aria-selected="true" aria-controls="race-panel"><svg class="icon" aria-hidden="true"><use href="#icon-flag"/></svg><span>Race</span></button>
+            <button type="button" id="open-upgrades" role="tab" aria-label="Upgrades" aria-selected="false" aria-controls="upgrade-panel" tabindex="-1"><svg class="icon" aria-hidden="true"><use href="#icon-boost"/></svg><span>Upgrades</span><span class="coin-count tab-coins" aria-hidden="true"><i></i><span id="garage-coins">0</span></span></button>
+            </div>
+        </header>
+        <section class="garage-panel race-panel" id="race-panel" role="tabpanel" aria-labelledby="race-tab">
+            <div class="race-rules">
+                <div class="option-group"><h3>Direction</h3><div id="directions" class="graphic-options direction-options" aria-label="Race direction"></div></div>
+                <div class="race-field">
+                    <span>Laps</span>
+                    <div class="compact-cycle" role="group" aria-label="Lap count">
+                        <button type="button" id="laps-prev" class="quiet cycle-key" aria-label="Fewer laps"><svg class="icon" aria-hidden="true"><use href="#icon-left"/></svg></button>
+                        <strong id="laps-value" aria-live="polite"></strong>
+                        <button type="button" id="laps-next" class="quiet cycle-key" aria-label="More laps"><svg class="icon" aria-hidden="true"><use href="#icon-right"/></svg></button>
+                    </div>
+                </div>
+                <div class="race-field">
+                    <span>Rivals</span>
+                    <div class="compact-cycle" role="group" aria-label="Number of rivals">
+                        <button type="button" id="opponents-prev" class="quiet cycle-key" aria-label="Fewer rivals"><svg class="icon" aria-hidden="true"><use href="#icon-left"/></svg></button>
+                        <strong id="opponents-value" aria-live="polite"></strong>
+                        <button type="button" id="opponents-next" class="quiet cycle-key" aria-label="More rivals"><svg class="icon" aria-hidden="true"><use href="#icon-right"/></svg></button>
+                    </div>
+                </div>
+                <div class="race-field" id="race-difficulty">
+                    <span>Difficulty</span>
+                    <div class="compact-cycle" role="group" aria-label="Difficulty">
+                        <button type="button" id="difficulty-prev" class="quiet cycle-key" aria-label="Lower difficulty"><svg class="icon" aria-hidden="true"><use href="#icon-left"/></svg></button>
+                        <strong id="difficulty-value" aria-live="polite"></strong>
+                        <button type="button" id="difficulty-next" class="quiet cycle-key" aria-label="Higher difficulty"><svg class="icon" aria-hidden="true"><use href="#icon-right"/></svg></button>
+                    </div>
+                </div>
+            </div>
+            <div class="race-conditions">
+                <div class="option-group"><h3>Time of day</h3><div id="times" class="graphic-options" aria-label="Time of day"></div></div>
+                <div class="option-group"><h3>Weather</h3><div id="weathers" class="graphic-options weather-options" aria-label="Starting weather"></div></div>
+                <div class="setup-toggles" role="group" aria-label="Race options">
+                    <button type="button" id="dynamic" class="quiet toggle-button" aria-pressed="true" title="Weather can cycle after the first race on each circuit"><svg class="icon" aria-hidden="true"><use href="#icon-refresh"/></svg>Changing weather</button>
+                    <button type="button" id="no-damage" class="quiet toggle-button" aria-pressed="false" title="Keeps your car running after crashes. Timed records are off."><svg class="icon" aria-hidden="true"><use href="#icon-bumpers"/></svg>No Damage</button>
+                </div>
+                <div id="garage-best" class="track-records" hidden></div>
+            </div>
+        </section>
+        <section class="garage-panel shop-panel" id="upgrade-panel" role="tabpanel" aria-labelledby="open-upgrades" hidden>
+            <div class="shop-heading">
+                <h2>Upgrades</h2>
+                <p class="coin-count" aria-live="polite"><i aria-hidden="true"></i><span id="shop-coins">0</span><span class="sr-only"> coins</span></p>
+            </div>
+            <div class="upgrade-list" id="upgrade-list" tabindex="0" aria-label="Available upgrades" role="region"></div>
+        </section>
+        <footer class="start-dock">
+            <button type="button" id="back-to-preview" class="quiet icon-button" aria-label="Back to garage" title="Back to garage"><svg class="icon" aria-hidden="true"><use href="#icon-left"/></svg></button>
+            <span id="start-summary"></span>
+            <button class="start-race" type="button" id="start" aria-label="Start race" disabled><svg class="icon" aria-hidden="true"><use href="#icon-play"/></svg></button>
+        </footer>
+    </dialog>
+</main>
+<dialog id="controls">
+    <form method="dialog">
+        <h2>Controls</h2>
+        <button class="quiet icon-button dialog-close" aria-label="Close controls"><svg class="icon" aria-hidden="true"><use href="#icon-close"/></svg></button>
+        <dl>
+            <dt>Accelerate</dt><dd>W or ↑</dd>
+            <dt>Brake</dt><dd>S or ↓</dd>
+            <dt>Steer</dt><dd>A / D or ← / →</dd>
+            <dt>Reverse</dt><dd>X or hold Brake after stopping</dd>
+            <dt>Change view</dt><dd>C</dd>
+            <dt>Recover</dt><dd>R</dd>
+            <dt>Pause</dt><dd>Esc</dd>
+            <dt>Jump upgrade</dt><dd>E</dd>
+            <dt>Rocket boost</dt><dd>Space or Shift</dd>
+            <dt>Teleport</dt><dd>F</dd>
+        </dl>
+        <button type="button" id="enhanced-shadows" class="quiet toggle-button" aria-pressed="false" title="Adds nearby building and tree shadows"><svg class="icon" aria-hidden="true"><use href="#icon-clear"/></svg>Enhanced shadows</button>
+    </form>
+</dialog>
+<dialog id="about" aria-labelledby="about-title">
+    <form method="dialog">
+        <button class="quiet icon-button dialog-close" aria-label="Close about"><svg class="icon" aria-hidden="true"><use href="#icon-close"/></svg></button>
+        <div>
+            <h2 id="about-title">One More Lap</h2>
+            <p>Follow the Road. An offline racing game by Possible Matter.</p>
+            <dl>
+                <dt>Version</dt><dd id="about-version"></dd>
+                <dt>Renderer</dt><dd id="about-renderer"></dd>
+                <dt>Preview frame rate</dt><dd id="about-fps">—</dd>
+            </dl>
+        </div>
+        <div class="about-credits">
+            <details class="music-credits" name="about-credits">
+                <summary>Game licenses</summary>
+                <ul tabindex="0" aria-label="Game licenses">
+                    <li><a href="./licenses/Babylon-LICENSE.txt" target="_blank" rel="noopener">Babylon.js</a></li>
+                    <li><a href="./licenses/Rapier-LICENSE.txt" target="_blank" rel="noopener">Rapier</a></li>
+                    <li><a href="./fonts/Barlow-OFL.txt" target="_blank" rel="noopener">Barlow Condensed</a></li>
+                    <li><a href="./fonts/DM-Sans-OFL.txt" target="_blank" rel="noopener">DM Sans</a></li>
+                </ul>
+            </details>
+            <details class="music-credits" name="about-credits">
+                <summary>Music credits</summary>
+                <p>Recordings licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank"
+                    rel="noopener noreferrer">CC BY 4.0</a>. Shortened, level-matched edits loop in the game.</p>
+                <ul id="music-credits" tabindex="0" aria-label="Soundtrack credits"></ul>
+            </details>
+        </div>
+    </form>
+</dialog>
+<script type="module" src="/src/main.ts"></script>
+</body>
+</html>

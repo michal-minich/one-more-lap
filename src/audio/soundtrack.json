@@ -1,0 +1,135 @@
+{
+    "garage": {
+        "title": "Midsommar",
+        "artist": "Scott Buckley",
+        "source": "https://www.scottbuckley.com.au/library/midsommar/",
+        "download": "https://www.scottbuckley.com.au/library/wp-content/uploads/2020/08/sb_midsommar.mp3",
+        "sha256": "2786e9c98341c7e2a20247852c1eed484097f5110feac7874ce80f3c255d0308",
+        "start": 12,
+        "duration": 60
+    },
+    "coast": {
+        "title": "Beachfront Celebration",
+        "artist": "Kevin MacLeod",
+        "source": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1200022",
+        "download": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Beachfront%20Celebration.mp3",
+        "sha256": "73ffcea8277780253b4e42dcbc3c5b3c50ba8ad343023372726a8678f43cc68e",
+        "start": 8,
+        "duration": 48
+    },
+    "alpine": {
+        "title": "Ascending the Vale",
+        "artist": "Kevin MacLeod",
+        "source": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1600064",
+        "download": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Ascending%20the%20Vale.mp3",
+        "sha256": "a0ab3aae9a942d797c381df8d914dfef453e7e455c1c6333d1916d59ba005353",
+        "start": 45.333,
+        "duration": 48
+    },
+    "canyon": {
+        "title": "Desert City",
+        "artist": "Kevin MacLeod",
+        "source": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100564",
+        "download": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Desert%20City.mp3",
+        "sha256": "aeefb582c77059aaf5b10d1e9125d7b19adca07cd841f3654e74aed7da9a3a71",
+        "start": 11.163,
+        "duration": 44.651
+    },
+    "ruins": {
+        "title": "Angevin",
+        "artist": "Kevin MacLeod",
+        "source": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1200110",
+        "download": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Angevin.mp3",
+        "sha256": "425f5febc62aee69761f16eae09158c35fd922a72c0fe8165af51c3a1f8818bf",
+        "start": 6.857,
+        "duration": 48
+    },
+    "forest": {
+        "title": "Master of the Feast",
+        "artist": "Kevin MacLeod",
+        "source": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1400019",
+        "download": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Master%20of%20the%20Feast.mp3",
+        "sha256": "7d8c1e5ebfd4c842718fa7c6bd81e8804cd0e743fe1496936f526dd514e65409",
+        "start": 3.934,
+        "duration": 47.213
+    },
+    "old-town": {
+        "title": "Sardana",
+        "artist": "Kevin MacLeod",
+        "source": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1400055",
+        "download": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Sardana.mp3",
+        "sha256": "2de923a476a69bb95e48d107ee1f389b0c5ebe870355ebed5f203f4a0da1020a",
+        "start": 6.4,
+        "duration": 51.2
+    },
+    "metro": {
+        "title": "Cipher",
+        "artist": "Kevin MacLeod",
+        "source": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100844",
+        "download": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Cipher2.mp3",
+        "sha256": "d3d0614535a61d748e2fd8d5117fc4d781022a7624794802a2462d8af3fdd522",
+        "start": 28.8,
+        "duration": 48
+    },
+    "future": {
+        "title": "Electric Dreams",
+        "artist": "Scott Buckley",
+        "source": "https://www.scottbuckley.com.au/library/electric-dreams/",
+        "download": "https://www.scottbuckley.com.au/library/wp-content/uploads/2020/09/sb_electricdreams.mp3",
+        "sha256": "7c570cd7f2d0611fca3d6e411490bc22e1c95473a93583e93888cbb0472ddcb4",
+        "start": 25,
+        "duration": 48
+    },
+    "mars": {
+        "title": "Catalyst",
+        "artist": "Scott Buckley",
+        "source": "https://www.scottbuckley.com.au/library/catalyst/",
+        "download": "https://www.scottbuckley.com.au/library/wp-content/uploads/2020/06/sb_catalyst.mp3",
+        "sha256": "8dabdc650ed2db00c9b5b685e5c9ddbc9e14e5d9f4a8dcd3f87db3ccf139e41e",
+        "start": 80,
+        "duration": 48
+    },
+    "arctic": {
+        "title": "Ice Flow",
+        "artist": "Kevin MacLeod",
+        "source": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1200088",
+        "download": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Ice%20Flow.mp3",
+        "sha256": "a8c77bcc296157b0a46a60ddf870f7e2c50f2273841907791c50cef662c71653",
+        "start": 20.571,
+        "duration": 48
+    },
+    "gorge": {
+        "title": "Heading West",
+        "artist": "Jason Shaw",
+        "source": "https://audionautix.com/free-music/rock",
+        "download": "https://audionautix.com/Music/HeadingWest.mp3",
+        "sha256": "2fffa7efead3922cb02745917b6396bae6225a6c316802766e53a5fd076449ce",
+        "start": 19,
+        "duration": 48
+    },
+    "sky": {
+        "title": "Luminance",
+        "artist": "Scott Buckley",
+        "source": "https://www.scottbuckley.com.au/library/luminance/",
+        "download": "https://www.scottbuckley.com.au/library/wp-content/uploads/2020/07/sb_luminance.mp3",
+        "sha256": "a3b1a1fde9beb11359270f7e1857eeb946e315f9925535fbd5643e9219d9d38a",
+        "start": 103,
+        "duration": 49
+    },
+    "caldera": {
+        "title": "Below the Ash",
+        "artist": "One More Lap original score"
+    },
+    "reef": {
+        "title": "Current of Color",
+        "artist": "One More Lap original score"
+    },
+    "rail": {
+        "title": "Juniper Limited",
+        "artist": "One More Lap original score"
+    },
+    "stunt": {
+        "title": "One Ticket Up",
+        "artist": "One More Lap original score"
+    }
+}

@@ -1,0 +1,156 @@
+#garage-setup {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100dvh;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: env(safe-area-inset-top) 0 0;
+    border: 0;
+    border-radius: 0
+}
+
+#garage-setup:not([open]) { display: none }
+#garage-setup[open] { display: grid }
+
+.setup-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px clamp(12px,4vw,56px);
+    padding: 14px max(var(--garage-inline-end),calc((100% - 1096px)/2)) 12px
+        max(var(--garage-inline-start),calc((100% - 1096px)/2));
+    border-bottom: 1px solid #76818e;
+    box-shadow: 0 3px 8px #080b117d
+}
+
+.setup-selection { min-width: 0 }
+.setup-selection h2 {
+    color: #f3f5f7;
+    font: italic 700 clamp(24px,4vw,48px)/.96 var(--heading);
+    text-transform: uppercase
+}
+
+.setup-selection p {
+    margin: 4px 0 0;
+    color: #c2ccd9;
+    font-size: 12px
+}
+
+.garage-tabs {
+    flex: none;
+    align-self: center;
+    gap: 7px;
+    padding: 0;
+    border: 0;
+    background: transparent
+}
+
+.garage-tabs button {
+    min-height: 46px;
+    min-width: 95px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 5px 14px
+}
+
+.garage-panel {
+    min-width: 0;
+    width: min(100%, 1144px);
+    justify-self: center;
+    padding: clamp(12px,3vw,26px) clamp(12px, 3vw, 24px);
+    overflow: auto;
+    overscroll-behavior: contain
+}
+
+#start-summary { flex: 1 }
+.start-dock {
+    min-height: 0;
+    padding: 6px var(--garage-inline-end) var(--garage-bottom) var(--garage-inline-start)
+}
+
+.race-panel {
+    display: grid;
+    grid-template-columns: minmax(248px,.85fr) minmax(0,1.15fr);
+    align-content: start;
+    align-items: start;
+    gap: clamp(10px,2vw,24px)
+}
+
+.race-rules,.race-conditions {
+    min-width: 0;
+    display: grid;
+    align-content: start;
+    gap: 13px;
+    border: 1px solid #71808c;
+    border-radius: 11px;
+    padding: clamp(9px,2vw,17px)
+}
+
+.race-panel :is(.option-group,.track-records,.race-field) { margin: 0 }
+.race-panel .option-group { gap: 5px }
+
+.race-panel .race-field {
+    min-width: 0;
+    padding-left: 10px;
+    grid-template-columns: minmax(0,1fr) minmax(122px,55%);
+    border: 1px solid #6f7985;
+    border-radius: 7px
+}
+
+.race-panel .compact-cycle {
+    grid-template-columns: 39px minmax(0,1fr) 39px;
+    gap: 1px;
+    min-width: 0
+}
+
+.race-panel .compact-cycle .cycle-key { width: 100%; height: 41px }
+.race-panel .graphic-options button { min-height: 48px }
+.race-conditions .graphic-options button { min-height: 58px }
+
+.setup-toggles {
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 6px
+}
+
+.setup-toggles button { min-height: 43px }
+
+.race-panel .track-records { grid-template-columns: repeat(2,minmax(0,1fr)) }
+.race-panel .track-records>div { gap: 3px; padding: 4px 6px; flex-wrap: wrap; font-size: 10px }
+.race-panel .track-records strong { font-size: 11px }
+
+@media(min-width: 760px) and (min-height: 650px) {
+    .race-panel { padding-top: clamp(36px,10dvh,106px) }
+}
+
+@media(max-width: 535px) {
+    .setup-header { flex-wrap: wrap; padding-block: 9px }
+    .garage-tabs { gap: 5px }
+    .setup-header .garage-tabs button { min-width: 64px; min-height: 40px; padding-inline: 7px; gap: 4px }
+    .setup-header .garage-tabs .icon { width: 19px; height: 19px }
+    .race-panel { grid-template-columns: minmax(0,1fr); padding-top: 10px }
+    .race-rules,.race-conditions { gap: 7px }
+}
+
+@media(max-width: 360px) {
+    .setup-header .garage-tabs { flex-basis: 100% }
+    .setup-selection h2 { font-size: 25px }
+}
+
+@media(max-height: 580px) {
+    .setup-header { padding-block: 5px }
+    .setup-header h2 { font-size: 25px }
+    .setup-header .garage-tabs button { min-height: 38px }
+    .garage-panel { padding-block: 8px }
+    .race-panel { column-gap: 8px }
+    .race-rules,.race-conditions { padding: 8px; gap: 7px }
+    .race-panel .option-group h3 { font-size: 16px }
+    .race-panel .graphic-options button { min-height: 39px }
+    .race-panel .condition-badge { width: 24px; height: 22px }
+    .race-panel .compact-cycle .cycle-key { height: 36px }
+    .setup-toggles button { min-height: 37px }
+}

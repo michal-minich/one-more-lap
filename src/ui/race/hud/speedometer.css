@@ -1,0 +1,441 @@
+.speed-dial {
+    --width: 155px;
+    --aspect: 2.28;
+    --center-x: 50%;
+    --center-y: 47%;
+    --scale-y: 78%;
+    --scale-width: 38%;
+    --scale-color: #f2c67e;
+    --scale-track: #f2c67e38;
+    --scale-mask: linear-gradient(#fff,#fff);
+    --digits: #fff1db;
+    --speed-fraction: 0;
+    --needle-angle: -122deg;
+    --tape-offset: 0%;
+
+    position: relative;
+    flex: none;
+    width: clamp(92px, min(19vw, 33dvh), var(--width));
+    aspect-ratio: var(--aspect);
+    container-type: inline-size;
+    font-variant-numeric: tabular-nums;
+    filter: drop-shadow(0 2px 3px #0a101fbb)
+}
+
+.speed-face {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none
+}
+
+.speed-value {
+    position: absolute;
+    z-index: 1;
+    inset: var(--center-y) auto auto var(--center-x);
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 2.5cqi;
+    transform: translate(-50%, -50%);
+    color: var(--digits);
+    white-space: nowrap;
+    text-shadow: 0 1px 4px #000
+}
+
+.speed-value strong {
+    font: 740 clamp(20px, 23cqi, 35px)/.84 var(--heading);
+    letter-spacing: -.04em
+}
+
+.race-readout .speed-value span {
+    color: inherit;
+    font: 650 clamp(7px, 7.3cqi, 11px)/1 var(--body);
+    opacity: .89
+}
+
+.speed-scale {
+    display: none;
+    position: absolute;
+    inset: var(--scale-y) auto auto 50%;
+    width: var(--scale-width);
+    height: clamp(2px, 2.1cqi, 4px);
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+    border-radius: 1px;
+    background: var(--scale-track);
+    mask-image: var(--scale-mask)
+}
+
+.speed-scale i {
+    display: block;
+    width: 100%;
+    height: 100%;
+    transform: scaleX(var(--speed-fraction));
+    transform-origin: left;
+    background: var(--scale-color)
+}
+
+.speed-dial[data-car="summit"] {
+    --width: 153px;
+    --aspect: 2.15;
+    --center-y: 45%;
+    --scale-y: 73%;
+    --scale-width: 56%;
+    --scale-color: #7bc1ff;
+    --scale-track: #7bc1ff38;
+    --scale-mask: repeating-linear-gradient(90deg,#fff 0 10%,transparent 10% 12.5%);
+    --digits: #e3f4ff
+}
+
+.speed-dial[data-car="mistral"] {
+    --width: 131px;
+    --aspect: 1.98;
+    --center-y: 59%;
+    --digits: #ecf7d8
+}
+
+.speed-dial[data-car="mistral"] strong { font-size: clamp(18px, 21cqi, 28px) }
+
+.speed-dial[data-car="aero"] {
+    --width: 189px;
+    --aspect: 4.46;
+    --center-y: 46%;
+    --scale-y: 80%;
+    --scale-width: 41%;
+    --scale-color: #85cfff;
+    --scale-track: #85cfff45;
+    --digits: #dbf9ff;
+
+    width: clamp(122px,min(20vw, 39dvh),var(--width))
+}
+
+.speed-dial[data-car="aero"] strong { font-size: clamp(17px, 16cqi, 30px) }
+
+.speed-dial[data-car="orbit"] {
+    --width: 166px;
+    --aspect: 2.62;
+    --center-y: 56%;
+    --scale-y: 25%;
+    --scale-width: 40%;
+    --scale-color: #67ffe0;
+    --scale-track: #67ffe024;
+    --scale-mask: repeating-linear-gradient(90deg,#fff 0 7%,transparent 7% 10%);
+    --digits: #d5fff3
+}
+
+.speed-dial[data-car="kestrel"] {
+    --width: 165px;
+    --aspect: 2.74;
+    --center-y: 39%;
+    --digits: #ffb58f
+}
+
+.speed-dial[data-car="kestrel"] strong { font-family: ui-monospace, monospace }
+
+.speed-dial[data-car="manta"] {
+    --width: 242px;
+    --aspect: 3.45;
+    --center-y: 49%;
+    --digits: #a7fffa;
+
+    width: clamp(145px,min(23vw, 48dvh),var(--width))
+}
+
+.speed-dial[data-car="manta"] strong {
+    font: 650 clamp(19px, 16.5cqi, 34px)/.84 ui-monospace, monospace;
+    letter-spacing: -.065em
+}
+
+
+.speed-needle, .speed-flight, .speed-tape { display: none }
+
+.speed-dial[data-gauge="bar"] .speed-scale { display: block }
+
+.speed-dial[data-gauge="needle"] .speed-needle {
+    display: block;
+    position: absolute;
+    width: auto;
+    height: var(--needle-size, 105%);
+    left: var(--pivot-x, 34%);
+    top: var(--pivot-y, 49%);
+    transform: translate(-50%,-50%)
+}
+
+.needle-face {
+    fill: #101517;
+    stroke: var(--dial-rim,#c5a36b);
+    stroke-width: 1.3
+}
+
+#speed-ticks line {
+    stroke: #e3dbca;
+    stroke-width: .9;
+    stroke-linecap: round
+}
+
+#speed-ticks line.major { stroke-width: 1.5 }
+#speed-ticks line.high { stroke: #e88260 }
+
+#speed-ticks text {
+    fill: var(--digits);
+    font: 650 7px var(--body);
+    text-anchor: middle
+}
+
+.needle-hand {
+    transform-origin: 42px 42px;
+    transform: rotate(var(--needle-angle));
+    fill: var(--hand,#efb96c)
+}
+
+.needle-hub { fill: var(--dial-rim,#c5a36b); stroke: #171819; stroke-width: .9 }
+
+.speed-dial[data-car="veloce"] {
+    --width: 179px;
+    --center-x: 65%;
+    --center-y: 56%;
+    --pivot-x: 32%;
+    --needle-size: 99%
+}
+
+.speed-dial[data-car="bastion"] {
+    --width: 165px;
+    --aspect: 2.1;
+    --digits: #ffddab;
+    --center-x: 66%;
+    --center-y: 54%;
+    --pivot-x: 34%;
+    --needle-size: 86%;
+    --dial-rim: #879196;
+    --hand: #ff8f61
+}
+
+.speed-dial[data-car="veloce"] .speed-value,
+.speed-dial[data-car="bastion"] .speed-value {
+    flex-direction: column;
+    align-items: center;
+    gap: 2px
+}
+
+.speed-dial[data-car="veloce"] strong,
+.speed-dial[data-car="bastion"] strong { font-size: clamp(15px, 18cqi, 32px) }
+
+.speed-dial[data-car="buggy"] {
+    --width: 114px;
+    --aspect: 1.28;
+    --digits: #f1e8be;
+    --center-y: 82%;
+    --pivot-x: 50%;
+    --pivot-y: 44%;
+    --needle-size: 79%;
+    --dial-rim: #cfbc7a;
+    --hand: #f0d589;
+
+    width: clamp(72px,min(11vw, 23dvh),var(--width))
+}
+
+.speed-dial[data-car="buggy"] strong { font-size: clamp(12px, 19cqi, 22px) }
+
+.speed-dial[data-gauge="tape"] .speed-tape {
+    display: block;
+    position: absolute;
+    inset: 62% 24% 15%;
+    overflow: hidden;
+    background: #171415;
+    border-top: 1px solid #efab7b70;
+    mask-image: linear-gradient(90deg,transparent,#fff 18% 82%,transparent)
+}
+
+#speed-tape-marks {
+    position: absolute;
+    left: 50%;
+    width: 270%;
+    height: 100%;
+    transform: translateX(var(--tape-offset))
+}
+
+.speed-tape i {
+    position: absolute;
+    font: normal 600 clamp(5px,5cqi,8px)/1 ui-monospace,monospace;
+    color: #ffb58f;
+    padding-top: 4px;
+    transform: translateX(-50%)
+}
+
+.speed-tape i::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 1px;
+    height: 3px;
+    background: currentColor
+}
+
+.speed-tape::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border: 3px solid transparent;
+    border-top-color: #ffba99;
+    transform: translateX(-50%)
+}
+
+.speed-dial[data-gauge="flight"] .speed-flight {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    fill: none;
+    pointer-events: none
+}
+
+.flight-track { stroke: #6bfff357; stroke-width: 2; stroke-linecap: round }
+.flight-marks { stroke: #82cdc7a3; stroke-width: 1.25; stroke-linecap: round }
+.flight-fill {
+    stroke: #73ffed;
+    stroke-width: 2.7;
+    stroke-dasharray: var(--speed-fraction) 1;
+    filter: drop-shadow(0 0 2px #4dc5ff)
+}
+.flight-fill + .flight-fill { stroke: #cbacff }
+
+.speed-dial[data-car="manta"] .speed-value {
+    flex-direction: column;
+    align-items: center;
+    gap: 2px
+}
+
+.race-instruments[data-clocks="inset"] {
+    gap: 0;
+    padding: 3px 7px 3px 3px;
+    width: max-content;
+    border: 1px solid #b6ada58c;
+    border-radius: 11px;
+    background: linear-gradient(160deg,#161b1eed,#0d1016e5);
+    box-shadow: 0 2px 5px #0a101f99
+}
+
+.race-instruments[data-clocks="inset"]:has(.clocks[hidden]) {
+    padding: 0;
+    border-color: transparent;
+    background: transparent;
+    box-shadow: none
+}
+
+.race-instruments[data-clocks="inset"] .clocks {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    align-self: center;
+    padding: 2px 0 2px 7px;
+    border-left: 1px solid #b6ada570
+}
+
+.race-instruments[data-clocks="inset"] .race-metric > span {
+    font-size: 8px;
+    letter-spacing: .035em;
+    text-transform: uppercase
+}
+
+.race-instruments[data-clocks="inset"] .race-metric strong {
+    color: #faf2e5;
+    font-size: clamp(13px,1.75vw,19px)
+}
+
+.race-instruments[data-clocks="inset"] .race-metric {
+    display: grid;
+    gap: 1px
+}
+
+.race-instruments[data-car="veloce"] { border-color: #c4a16d9a }
+.race-instruments[data-car="summit"] { border-color: #7aaeff90 }
+.race-instruments[data-car="aero"] { border-color: #a9aadf86 }
+.race-instruments[data-car="orbit"] { border-color: #59baab85 }
+.race-instruments[data-car="kestrel"] { border-color: #df9a7d8a }
+
+.race-instruments[data-clocks="inset"][data-car="manta"]:has(.clocks:not([hidden])) {
+    display: grid;
+    justify-items: center;
+    width: max-content;
+    padding: 2px 7px 5px;
+    background: linear-gradient(160deg,#0b242beb,#181132ee);
+    border: 1px solid #72d9d9a6;
+    border-radius: 0 17px 4px 0
+}
+
+.race-instruments[data-clocks="inset"][data-car="manta"] .clocks {
+    grid-template-columns: repeat(2,max-content);
+    justify-content: center;
+    min-width: 100%;
+    gap: 11px;
+    padding: 3px 2px 0;
+    border-top: 1px solid #74fff36c;
+    border-left: 0;
+    text-align: center
+}
+
+.race-instruments[data-clocks="inset"][data-car="manta"] .race-metric strong {
+    color: #adf9f5;
+    font: 600 clamp(10px,1.25vw,15px)/1 ui-monospace,monospace
+}
+
+@media(max-width: 720px) {
+    .speed-dial { max-width: 104px }
+    .speed-dial[data-car="buggy"] { max-width: 85px }
+    .speed-dial[data-car="aero"] { max-width: 124px }
+    .speed-dial[data-car="manta"] { max-width: 130px }
+    .race-instruments[data-clocks="inset"] .clocks {
+        padding-left: 5px;
+        gap: 3px
+    }
+}
+
+@media(max-width: 360px) {
+    .speed-dial[data-car="manta"] { max-width: 122px }
+    .race-instruments[data-clocks="inset"] { padding-right: 5px }
+}
+
+@media(max-width: 650px) {
+    .race-instruments[data-clocks="separate"] .clocks {
+        align-self: end;
+        gap: 4px;
+        padding: 2px 0
+    }
+
+    .race-instruments[data-clocks="separate"] .race-metric {
+        display: grid;
+        gap: 1px
+    }
+
+    .race-instruments[data-clocks="separate"] .race-metric strong {
+        font-size: 15px
+    }
+
+    .race-instruments[data-clocks="separate"] .race-metric > span {
+        font-size: 9px
+    }
+}
+
+/* Extend selected housings to the safe-area edge while the rest of the HUD stays padded. */
+.race-instruments:is([data-car="manta"], [data-car="buggy"]) {
+    position: relative;
+    left: calc(env(safe-area-inset-left) - var(--race-left) - var(--readout-padding))
+}
+
+.race-instruments:is([data-car="manta"], [data-car="orbit"]) {
+    position: relative;
+    top: calc(var(--race-bottom) - env(safe-area-inset-bottom))
+}
+
+.race-instruments[data-clocks="inset"][data-car="orbit"] {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0
+}
+

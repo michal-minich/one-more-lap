@@ -1,0 +1,238 @@
+.garage-layout {
+    --garage-inline-start: max(clamp(10px, 1.8vw, 26px), env(safe-area-inset-left));
+    --garage-inline-end: max(clamp(10px, 1.8vw, 26px), env(safe-area-inset-right));
+    --garage-bottom: max(10px, env(safe-area-inset-bottom));
+    --garage-play-size: clamp(54px, 8dvh, 80px);
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 0;
+    padding: 10px var(--garage-inline-end) var(--garage-bottom) var(--garage-inline-start);
+    gap: 8px
+}
+
+.garage-layout .hero {
+    flex: 1;
+    min-height: 0
+}
+
+.garage-dashboard {
+    flex: none;
+    width: 100%;
+    display: flex;
+    gap: clamp(10px, 2vw, 26px);
+    align-items: center
+}
+
+.racing .garage-dashboard {
+    display: none
+}
+
+.garage-dashboard .car-stats {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    flex: 1;
+    gap: 0;
+    margin: 0;
+    border: 1px solid #fce1d032;
+    border-radius: 12px;
+    background: #261b24a6
+}
+
+.garage-dashboard .car-stats>div {
+    min-width: 0;
+    min-height: 51px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    gap: 3px 7px;
+    padding: 5px clamp(4px, 1vw, 12px);
+    border: 0;
+    border-inline-end: 1px solid #fce1d026;
+    border-radius: 0;
+    background: transparent;
+    text-align: center;
+    font-size: clamp(9px, 1.2vw, 13px)
+}
+
+.garage-dashboard .car-stats>div:last-child {
+    border-inline-end: 0
+}
+
+.garage-dashboard .car-meter {
+    align-self: center
+}
+
+.garage-layout .start-race {
+    flex: none;
+    align-self: end;
+    width: var(--garage-play-size)
+}
+
+.paint-control {
+    --paint-swatch-size: clamp(37px, 7vw, 44px);
+    --paint-width: calc(6 * var(--paint-swatch-size) + 31px);
+    --paint-height: calc(2 * var(--paint-swatch-size) + 19px);
+    --paint-shift: 0px;
+    position: absolute;
+    left: clamp(calc(var(--paint-width) / 2 - var(--paint-shift) + 5px), var(--paint-x),
+        calc(100% - var(--paint-width) / 2 - var(--paint-shift) - 5px));
+    top: clamp(min(calc(var(--paint-height) + 58px), 90%), calc(var(--paint-y) - 8px), 100%);
+    transform: translate(-50%, -100%)
+}
+
+.racing .paint-control {
+    display: none
+}
+
+.paint-control .paint-trigger {
+    width: 44px
+}
+
+.paint-trigger .icon {
+    filter: drop-shadow(0 1px 2px #17121a)
+}
+
+.paint-trigger::after {
+    position: absolute;
+    inset: auto 5px 5px auto;
+    width: 11px;
+    height: 11px;
+    border: 1px solid #fff3e5bc;
+    border-radius: 50%;
+    background: var(--swatch);
+    content: ""
+}
+
+.paint-control .paint-options {
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: calc(50% + var(--paint-shift));
+    transform: translateX(-50%);
+    display: grid;
+    grid-template-columns: repeat(6, var(--paint-swatch-size));
+    gap: 3px;
+    padding: 7px;
+    border: 1px solid #fff0e77a;
+    border-radius: 17px;
+    background: linear-gradient(#d9ccd649, #3f31486b);
+    box-shadow: inset 0 1px 1px #ffffff50, 0 4px 14px #110d1759;
+    backdrop-filter: blur(6px)
+}
+
+.paint-options .swatch {
+    display: grid;
+    place-items: center;
+    width: var(--paint-swatch-size);
+    aspect-ratio: 1;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent
+}
+
+.paint-options .swatch::before {
+    grid-area: 1 / 1;
+    width: calc(100% - 8px);
+    aspect-ratio: 1;
+    border: 1px solid #fff3e5a8;
+    border-radius: 50%;
+    background: var(--swatch);
+    box-shadow: inset 0 1px 2px #ffffff55, 0 2px 4px #110d1780;
+    content: ""
+}
+
+.paint-options .swatch:hover::before,
+.paint-options .swatch[aria-pressed="true"]::before {
+    border-color: #fff5ed;
+    outline: 2px solid #fff5ed;
+    outline-offset: 2px
+}
+
+.paint-options .swatch > span:empty {
+    display: none
+}
+
+.hero-car .car-unlock {
+    pointer-events: auto;
+    margin: 8px 0 0;
+    text-align: left
+}
+
+.hero-arrow[aria-busy="true"] .icon {
+    visibility: hidden
+}
+
+.hero-arrow[aria-busy="true"]::after {
+    grid-area: 1 / 1;
+    width: 19px;
+    height: 19px;
+    border: 2px solid #fff5ea66;
+    border-top-color: #fff5ea;
+    border-radius: 50%;
+    content: "";
+    animation: preview-spin .65s linear infinite
+}
+
+.hero-arrow .icon {
+    grid-area: 1 / 1
+}
+
+@keyframes preview-spin {
+    to { transform: rotate(1turn) }
+}
+
+@media (min-width: 600px) and (max-height: 530px) {
+    .paint-control {
+        --paint-swatch-size: 40px;
+        --paint-shift: 85px
+    }
+}
+
+@media (max-width: 520px), (max-height: 530px) {
+    .hero-car h2 {
+        font-size: clamp(20px, 5.3vw, 31px)
+    }
+
+    .garage-dashboard .car-stats>div {
+        min-height: 48px
+    }
+
+    .garage-dashboard .car-meter {
+        gap: 2px
+    }
+
+    .garage-dashboard .car-stats strong {
+        font-size: 11px
+    }
+
+    .garage-dashboard .car-meter i {
+        width: 3px
+    }
+
+}
+
+@media (max-height: 530px) {
+    .garage-layout { gap: 5px; padding-block-start: 5px }
+    .hero-overlay,.hero-car { padding: 10px }
+    .hero-overlay h2,.hero-car h2 { font-size: clamp(21px, 5.2vw, 33px) }
+    #track-description,#car-description { margin-top: 5px; font-size: 11px }
+    .hero-route { width: clamp(89px, 17vw, 134px) }
+    .hero-car .car-unlock { margin-top: 4px; padding: 3px 6px }
+    .hero-car .car-unlock .quiet { min-height: 34px }
+}
+
+@media (max-width: 360px) {
+    .hero-overlay,.hero-car { padding-inline: 10px }
+    .hero { --browse-size: 36px }
+    .garage-dashboard { gap: 5px }
+    .garage-dashboard .car-stats>div { padding-inline: 2px }
+    .garage-layout { --garage-play-size: 48px }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-arrow[aria-busy="true"]::after {
+        animation: none
+    }
+}

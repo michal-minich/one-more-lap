@@ -1,0 +1,201 @@
+.shop-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 7px
+}
+
+.shop-heading h2 { font-size: 27px }
+
+.shop-heading .coin-count {
+    gap: 8px;
+    padding: 6px 12px;
+    border: 1px solid #926240;
+    border-radius: 20px;
+    background: #402724;
+    font-size: 16px;
+    font-weight: 800
+}
+
+.upgrade-list {
+    display: grid;
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    align-content: start;
+    min-height: 0;
+    gap: 8px;
+    overflow: hidden auto;
+    overscroll-behavior: contain;
+    scrollbar-color: #925657 transparent;
+    scrollbar-width: thin;
+    padding: 4px;
+    margin: -4px
+}
+
+.shop-panel {
+    display: grid;
+    grid-template-rows: auto minmax(0,1fr)
+}
+
+.upgrade-card {
+    display: grid;
+    grid-template-rows: auto auto auto 1fr;
+    justify-items: center;
+    align-items: center;
+    gap: 3px;
+    padding: 6px 4px;
+    border: 1px solid #764743;
+    border-radius: 9px;
+    background: radial-gradient(ellipse at top,#583032,#322025 76%);
+    text-align: center
+}
+
+.upgrade-symbol {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #a15b45;
+    border-radius: 12px;
+    background: #603631;
+    color: #ffd39e
+}
+
+.upgrade-symbol .icon {
+    width: 26px;
+    height: 26px;
+    stroke-width: 1.6
+}
+
+.upgrade-card h3 {
+    margin: 0;
+    color: #f7e4d9;
+    font: 700 21px/.97 var(--heading)
+}
+
+.upgrade-card p {
+    align-self: start;
+    color: #decac5;
+    font-size: 11px;
+    line-height: 1.28
+}
+
+.upgrade-card button {
+    width: 100%;
+    min-height: 34px;
+    padding: 3px 4px;
+    background: transparent;
+    border-color: transparent;
+    color: #ffe4ad
+}
+
+.upgrade-card button:disabled {
+    cursor: default;
+    opacity: .8
+}
+
+.coin-price {
+    justify-content: center;
+    gap: 3px
+}
+
+.coin-price i {
+    width: 13px;
+    height: 13px
+}
+
+.quiet.owned {
+    background: #354535;
+    border-color: #67805a;
+    color: #c0f0a3;
+    opacity: 1
+}
+
+.owned .icon {
+    width: 24px;
+    height: 24px
+}
+
+.car-unlock {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 9px;
+    margin: 0 0 16px;
+    padding: 10px;
+    border: 1px solid #ac704e;
+    border-radius: 8px;
+    background: #4c2c2b;
+    color: #ffd49b
+}
+
+.car-unlock .quiet {
+    min-height: 40px;
+    padding: 4px 9px;
+    border-color: transparent;
+    background: transparent
+}
+
+.upgrade-card button:not(:disabled):is(:hover,:active),.car-unlock .quiet:not(:disabled):is(:hover,:active) {
+    background: #733e34;
+    border-color: #b36e53
+}
+
+.start-race.car-locked {
+    cursor: default
+}
+
+.start-race.car-locked .icon {
+    fill: none;
+    stroke-width: 1.75
+}
+
+@media(max-width:495px) {
+    .upgrade-list { gap: 5px }
+    .upgrade-card h3 { font-size: 17px }
+    .upgrade-card p { font-size: 10px }
+    .upgrade-symbol { width: 30px; height: 30px }
+    .upgrade-symbol .icon { width: 21px; height: 21px }
+    .upgrade-card .coin-price { gap: 2px }
+    .upgrade-card .coin-price i { width: 10px; height: 10px }
+}
+
+@media(max-height:575px) {
+    .shop-heading { margin-bottom: 4px }
+    .shop-heading h2 { font-size: 22px }
+    .shop-heading .coin-count { padding: 3px 7px; font-size: 12px }
+    .upgrade-card {
+        grid-template-columns: auto minmax(0,1fr);
+        grid-template-rows: auto 1fr auto;
+        padding: 4px;
+        gap: 3px
+    }
+    .upgrade-card h3 { font-size: 15px }
+    .upgrade-card p {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        font-size: 10px;
+        line-height: 1.15
+    }
+    .upgrade-card button {
+        grid-column: 1 / -1;
+        min-height: 26px;
+        padding-block: 1px
+    }
+    .upgrade-symbol { width: 25px; height: 25px; border-radius: 7px }
+    .upgrade-symbol .icon { width: 18px; height: 18px }
+}
+
+@media(max-width:439px) and (max-height:575px) {
+    .upgrade-card {
+        gap: 2px;
+        padding: 3px
+    }
+    .upgrade-card h3 { font-size: 14px }
+    .upgrade-card p { font-size: 9.5px }
+    .upgrade-card button { min-height: 32px }
+}
+
+@media(min-width:440px) and (max-height:530px) {
+    .upgrade-list { grid-template-columns: repeat(5,minmax(0,1fr)); gap: 5px }
+}

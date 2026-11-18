@@ -1,0 +1,55 @@
+.power-controls {
+    display: grid;
+    justify-items: stretch;
+    gap: 5px;
+    margin-bottom: 7px
+}
+
+.power-controls button {
+    justify-content: start;
+    gap: 4px;
+    padding: 5px 6px;
+    min-height: 39px;
+    border-color: #936753;
+    background: linear-gradient(90deg,#723d32 var(--charge,0%),#251f20 var(--charge,0%));
+    color: #f6dfb9;
+    font-size: 11px;
+    text-align: left;
+    white-space: nowrap
+}
+
+.power-controls .icon {
+    width: 15px;
+    height: 15px
+}
+
+.power-controls button[data-active="true"] {
+    background: #253c42;
+    border-color: #85ccc8;
+    color: #bdf7ec;
+    opacity: 1
+}
+
+.power-controls button:disabled {
+    cursor: default
+}
+
+.power-controls small {
+    margin-left: 2px;
+    opacity: 0.88
+}
+
+.power-controls kbd {
+    font: inherit;
+    opacity: .85
+}
+
+@media(any-hover:none) and (any-pointer:coarse) {
+    .power-controls kbd { display: none }
+}
+
+@media(pointer:coarse) {
+    .power-controls button {
+        min-height: 42px
+    }
+}

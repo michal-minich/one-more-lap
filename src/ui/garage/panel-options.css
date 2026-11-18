@@ -1,0 +1,197 @@
+.shop-heading h2 {
+    color: #fff1e9;
+    font: italic 700 36px/.98 var(--heading);
+    text-transform: uppercase;
+    overflow-wrap: anywhere
+}
+
+.cycle-key {
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border-color: #75434a;
+    background: #40252d
+}
+
+.cycle-key:disabled {
+    opacity: .36;
+    cursor: default
+}
+
+.cycle-key .icon {
+    width: 24px;
+    height: 24px
+}
+
+.track-records {
+    display: grid;
+    gap: 1px;
+    margin-top: 13px;
+    overflow: hidden;
+    border: 1px solid #633b3e;
+    border-radius: 7px
+}
+
+.track-records>div,.car-stats>div {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+    padding: 8px 10px;
+    background: #382229;
+    color: #eed3c6;
+    font-size: 12px
+}
+
+.track-records strong,.car-stats strong {
+    color: #ffe7c5;
+    font-size: 14px;
+    font-variant-numeric: tabular-nums
+}
+
+.car-stats {
+    display: grid;
+    gap: 5px;
+    margin-bottom: 16px
+}
+
+.car-stats>div {
+    border: 1px solid #633b3e;
+    border-radius: 6px;
+    align-items: center
+}
+
+.car-meter {
+    display: inline-flex;
+    align-items: end;
+    gap: 3px;
+    margin-left: auto
+}
+
+#car-top-speed {
+    margin-left: auto;
+    white-space: nowrap
+}
+
+#car-top-speed + .car-meter { margin-left: 0 }
+
+.car-meter i {
+    width: 6px;
+    height: calc(4px + var(--bar) * 2px);
+    border-radius: 2px;
+    background: #6a484c
+}
+
+.car-meter .filled { background: #ffa080 }
+
+.car-stats .drive-stat { flex-wrap: wrap }
+
+.drive-stat small {
+    flex-basis: 100%;
+    color: #dfc3bc
+}
+
+.option-group {
+    display: grid;
+    gap: 6px;
+    margin-bottom: 12px
+}
+
+.option-group h3 {
+    margin: 0;
+    color: #f5d9cd;
+    font: 700 18px/1 var(--heading);
+    text-transform: uppercase;
+    letter-spacing: .04em
+}
+
+.graphic-options,.lap-options {
+    display: grid;
+    gap: 4px
+}
+
+.graphic-options {
+    grid-template-columns: repeat(4,minmax(0,1fr))
+}
+
+.weather-options,.pause-conditions #pause-weathers {
+    grid-template-columns: repeat(3,minmax(0,1fr))
+}
+
+.direction-options {
+    grid-template-columns: repeat(2,minmax(0,1fr))
+}
+
+.direction-options button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px
+}
+
+.lap-options {
+    grid-template-columns: repeat(6,minmax(0,1fr))
+}
+
+.graphic-options button,.lap-options button {
+    min-height: 42px;
+    min-width: 0;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: 3px;
+    padding: 4px 2px;
+    border: 1px solid #5b373d;
+    border-radius: 6px;
+    background: #382229;
+    color: #e5c5ba;
+    font-size: 11px;
+    font-weight: 750
+}
+
+.graphic-options button .icon {
+    width: 22px;
+    height: 22px
+}
+
+.lap-options button {
+    font: 700 21px/1 var(--heading)
+}
+
+.graphic-options button[aria-pressed="true"],.lap-options button[aria-pressed="true"] {
+    border-color: #e97762;
+    background: #64332e;
+    color: #fff1da
+}
+
+.paint-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px
+}
+
+.race-field,.compact-cycle {
+    display: grid;
+    align-items: center
+}
+
+.race-field {
+    grid-template-columns: minmax(0,1fr) 145px;
+    gap: 8px;
+    margin-top: 6px;
+    color: #ebcfc2;
+    font-size: 13px;
+    font-weight: 750
+}
+
+.compact-cycle {
+    grid-template-columns: 40px minmax(0,1fr) 40px;
+    text-align: center;
+    color: #fff1df
+}
+
+.compact-cycle .cycle-key {
+    width: 40px;
+    height: 40px
+}

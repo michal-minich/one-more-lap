@@ -1,0 +1,159 @@
+:root {
+    --bg: #161c24;
+    --line: #657684;
+    --paper: #f2f4f7;
+    --sub: #c0cbd6;
+    --accent: #91d7f5;
+    --steel-bevel: inset 0 1px 1px #f1f7ff75, inset 0 -2px 2px #04070aba, 0 2px 3px #05080bb0;
+    --steel-panel-face: linear-gradient(147deg,#64758333,#131a228c), var(--steel-panel), #283440;
+    --steel-key-face: var(--steel-button) center/100% 100% no-repeat, linear-gradient(#4c5966,#26323d)
+}
+
+body {
+    background: linear-gradient(134deg,#353f4b,#141b24 75%) fixed;
+    background-image: linear-gradient(134deg,#222b36a1,#121821ed 75%),var(--steel-panel)
+}
+
+:is(.topbar,.garage-dashboard .car-stats,.start-dock,.setup-header) {
+    background: var(--steel-panel-face)
+}
+
+.topbar { border-bottom-color: #71818f }
+.garage-layout .hero { border-color: #75838f; box-shadow: 0 0 0 1px #121a22, 0 5px 11px #0b1016a1 }
+.hero .eyebrow { color: #daedf7; text-shadow: 0 1px 3px #0b121a }
+.hero :is(h2,#car-description,#track-description) { color: #f5f8fd }
+.garage-dashboard .car-stats {
+    border-color: #8494a57a;
+    box-shadow: var(--steel-bevel)
+}
+
+.garage-dashboard .car-stats>div { border-inline-end-color: #a1b3c340; color: #dbebf6 }
+.garage-dashboard .car-stats strong { color: #f5f0e6 }
+.car-meter i { background: #252f37; box-shadow: inset 0 1px 2px #05080b }
+.car-meter .filled { background: linear-gradient(#cfecfb,#72a4be); box-shadow: 0 0 4px #92e3fc55 }
+
+#garage-setup {
+    background: linear-gradient(#11182230,#101720bd), var(--steel-panel), #202a35
+}
+
+:is(.race-rules,.race-conditions,.upgrade-card,.shop-heading,.track-records>div) {
+    background: var(--steel-panel-face)
+}
+
+:is(.race-rules,.race-conditions,.upgrade-card) {
+    box-shadow: inset 0 1px 1px #d4e5f24f, inset 0 -1px 2px #090d15ac, 0 3px 10px #070d168c
+}
+
+.race-panel .race-field {
+    background: linear-gradient(#131b24,#1e2a37);
+    box-shadow: inset 0 2px 5px #070d14bc;
+    color: #d9e4ee
+}
+
+.race-panel .option-group h3,.shop-heading h2 { color: #ecf1f7 }
+.start-dock { border-top-color: #8292a0; box-shadow: 0 -3px 8px #080b117d }
+#start-summary { color: #e0eaf1 }
+
+:is(.quiet,.primary,.hero-arrow,.paint-trigger,.start-race,.garage-tabs button,.graphic-options button,.driving-key),
+:is(.garage-tabs #open-upgrades,.race-ui .power-controls button) {
+    border: 1px solid #a0b1c2;
+    border-radius: 8px;
+    background: var(--steel-key-surface,var(--steel-key-face));
+    box-shadow: var(--steel-bevel);
+    color: #f6f8fa;
+    text-shadow: 0 1px 2px #070b13
+}
+
+:is(.hero-arrow,.paint-trigger) { border-radius: 50% }
+:is(.garage-layout,.start-dock) .start-race {
+    background: var(--steel-key-face);
+    border-radius: 11px;
+    color: #9ee9fa;
+    box-shadow: var(--steel-bevel), 0 0 8px #87d7f840
+}
+
+:is(.garage-layout,.start-dock) .start-race:hover:not(:disabled) { color: #d1f7ff }
+:is(.quiet,.primary,.hero-arrow,.paint-trigger,.start-race,.garage-tabs button,.graphic-options button):hover:not(:disabled) {
+    background: var(--steel-key-surface,var(--steel-key-face));
+    filter: brightness(1.19)
+}
+:is(.quiet,.primary,.hero-arrow,.paint-trigger,.start-race,.garage-tabs button,.graphic-options button):active:not(:disabled),
+.driving-key.pressed {
+    filter: brightness(.75);
+    box-shadow: inset 0 2px 4px #06090c, inset 0 -1px 1px #c4daeb7a
+}
+
+:is(.graphic-options button[aria-pressed="true"],.garage-tabs button[aria-selected="true"],
+    .garage-tabs #open-upgrades[aria-selected="true"],.toggle-button[aria-pressed="true"],.paint-trigger[aria-expanded="true"]) {
+    border-color: #9be8fa;
+    --steel-key-surface: linear-gradient(#0f405c5e,#07334780),var(--steel-key-face);
+    background: var(--steel-key-surface);
+    box-shadow: inset 0 2px 5px #070e18a8, inset 0 0 8px #81ccfb47, 0 0 6px #84def93c;
+    color: #e2faff
+}
+
+.toggle-button { position: relative; padding-inline-start: 15px; padding-inline-end: 18px }
+.toggle-button::after {
+    content: "";
+    position: absolute;
+    right: 6px;
+    top: 6px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #17262f;
+    box-shadow: inset 0 0 0 1px #8092a1
+}
+
+.toggle-button[aria-pressed="true"]::after { background: #98f4fb; box-shadow: 0 0 4px #98f4fb }
+.toggle-button .icon { width: 15px; height: 15px }
+
+.condition-badge {
+    width: 34px;
+    height: 30px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 2px #000a)
+}
+
+.graphic-options .icon { filter: drop-shadow(0 1px 2px #111) }
+
+:is(.race-message,.race-finish,#controls,#about) {
+    border-color: #8595a4;
+    background: linear-gradient(#10202bd9,#111923f5),var(--steel-panel),#15202a
+}
+
+.driving-pads {
+    position: absolute;
+    inset: 0;
+    pointer-events: none
+}
+
+.driving-key {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    user-select: none;
+    border-radius: 9px;
+    opacity: .93;
+    font: 700 clamp(11px,2vw,18px)/1 var(--heading);
+    letter-spacing: .045em;
+    text-transform: uppercase
+}
+
+.driving-key .icon { width: 45%; height: 45%; stroke-width: 2.05 }
+.driving-key[data-action="throttle"] { color: #b7f3ff }
+.driving-key[data-action="brake"] { color: #ffdfc2 }
+
+.race-ui .power-controls button {
+    background: linear-gradient(90deg,#2c889e6b var(--charge,0%),#1017208c var(--charge,0%)),var(--steel-key-face)
+}
+
+.race-ui .power-controls button[data-active="true"] {
+    border-color: #a2edf1;
+    background: linear-gradient(#168e9c88,#0f4b6980),var(--steel-key-face);
+    color: #d9fbfc
+}
+
+.race-top .quiet { border-radius: 8px }
+.race-actions .icon-button { align-self: start }
+:is(.race-top,.garage-tabs) .icon { filter: drop-shadow(0 1px 1px #111) }

@@ -1,0 +1,288 @@
+.hero {
+    --browse-size: clamp(40px, 3.5vw, 48px);
+    --browse-gap: clamp(7px, 1.2vw, 15px);
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    border: 1px solid #694145;
+    border-radius: 15px;
+    background: #222125
+}
+
+#view,#view canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0 0 auto;
+    padding: clamp(16px,3vw,38px);
+    pointer-events: none;
+    text-shadow: 0 2px 15px #1a1017
+}
+
+.hero-overlay::before {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    content: "";
+    background: linear-gradient(111deg,#160e15c4 0%,#21142359 38%,transparent 74%);
+    mask-image: linear-gradient(#000 63%,transparent)
+}
+
+.hero-cycle {
+    display: flex;
+    align-items: center;
+    gap: var(--browse-gap)
+}
+
+.hero-arrow,.paint-trigger {
+    display: grid;
+    place-items: center;
+    width: var(--browse-size);
+    aspect-ratio: 1;
+    flex: none;
+    padding: 0;
+    border: 1px solid #fff0e77a;
+    border-radius: 50%;
+    background: linear-gradient(#e8dce34d,#6e606e49 47%,#261d2880 53%,#53445178);
+    box-shadow: inset 0 1px 1px #ffffff66, 0 2px 7px #110d1780;
+    color: #fff7ef;
+    pointer-events: auto
+}
+
+.hero-arrow:hover,.paint-trigger:hover,.paint-trigger[aria-expanded="true"] {
+    background: linear-gradient(#ffe3d5a1,#a7798491 47%,#4c303abc 53%,#79535db8)
+}
+
+.hero-arrow .icon {
+    width: 21px;
+    height: 21px
+}
+
+.eyebrow {
+    color: #ffae95;
+    font-size: clamp(10px,1vw,13px);
+    font-weight: 800;
+    letter-spacing: .17em
+}
+
+.hero-overlay h2,.hero-car h2 {
+    color: #fff0e7;
+    font: italic 700 clamp(31px,4.7vw,71px)/.91 var(--heading);
+    text-transform: uppercase;
+    letter-spacing: -.025em
+}
+
+#track-description,#car-description {
+    margin-top: 8px;
+    max-width: min(430px, calc(100% - var(--browse-size) - var(--browse-gap)));
+    color: #fff1e9;
+    font-size: clamp(12px,1.2vw,15px);
+    font-weight: 600
+}
+
+#track-description,.hero-route {
+    margin-inline-start: calc(var(--browse-size) + var(--browse-gap))
+}
+
+.hero-route {
+    display: block;
+    width: clamp(130px, 19vw, 208px);
+    height: auto;
+    margin-top: 8px;
+    filter: drop-shadow(0 2px 3px #180f19a6)
+}
+
+.hero-car {
+    position: absolute;
+    inset: auto 0 0 auto;
+    padding: clamp(12px,2.3vw,32px);
+    width: min(455px,92%);
+    background: radial-gradient(ellipse 100% 100% at bottom right,#1c121cc9,transparent 97%);
+    text-align: right;
+    text-shadow: 0 2px 12px #1b1017;
+    pointer-events: none
+}
+
+.hero-car h2 {
+    font-size: clamp(26px,3.4vw,52px)
+}
+
+.hero-car .hero-cycle {
+    justify-content: flex-end;
+    margin-top: 4px
+}
+
+.hero-car .eyebrow,#car-description {
+    margin-inline: auto calc(var(--browse-size) + var(--browse-gap))
+}
+
+.load-message {
+    position: absolute;
+    inset: 44% 12% auto;
+    padding: 13px;
+    border: 1px solid #8d5351;
+    border-radius: 9px;
+    background: #211518e9;
+    color: #ffdcce;
+    text-align: center
+}
+
+.garage-console {
+    min-width: 0;
+    display: grid;
+    grid-template-rows: auto minmax(0,1fr) auto;
+    border: 1px solid #59383d;
+    border-radius: 15px;
+    background: radial-gradient(ellipse at 85% 0,#381d24 0%,#24171d 40%,#1b151a 80%);
+    box-shadow: 0 10px 34px #0b060c8a;
+    overflow: hidden
+}
+
+.garage-tabs {
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 4px;
+    border-bottom: 1px solid #543238;
+    background: #23171dcc
+}
+
+.garage-tabs button {
+    min-width: 0;
+    min-height: 62px;
+    display: grid;
+    justify-items: center;
+    align-content: center;
+    gap: 4px;
+    position: relative;
+    padding: 4px 2px;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    background: transparent;
+    color: #c9b1ad;
+    font-size: 11px;
+    font-weight: 800
+}
+
+.garage-tabs button:hover {
+    background: #44252b
+}
+
+.garage-tabs button[aria-selected="true"] {
+    border-color: #a3473e;
+    background: linear-gradient(#65302f,#46222a);
+    color: #fff0e3
+}
+
+.garage-tabs .icon {
+    width: 26px;
+    height: 26px
+}
+
+.garage-tabs #open-upgrades {
+    border-color: #92623e;
+    background: #472a2b;
+    color: #ffe0aa
+}
+
+.garage-tabs #open-upgrades:hover,
+.garage-tabs #open-upgrades[aria-selected="true"] {
+    border-color: #e4aa70;
+    background: #774135
+}
+
+#open-upgrades .icon {
+    width: 29px;
+    height: 29px;
+    fill: #ffd197;
+    stroke-width: 1.25
+}
+
+.garage-tabs .tab-coins {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    gap: 3px;
+    padding: 2px 3px;
+    border-radius: 7px;
+    background: #2b1b20;
+    font-size: 10px
+}
+
+.tab-coins i {
+    width: 8px;
+    height: 8px;
+    border-width: 1px
+}
+
+.start-dock {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    min-height: 92px;
+    padding: 8px 15px 13px;
+    border-top: 1px solid #58343b;
+    background: linear-gradient(137deg,transparent 64%,#60292f 64% 66%,transparent 66% 70%,#44232b 70% 73%,transparent 73%),
+        linear-gradient(90deg,#21171c,#2c1b21)
+}
+
+#start-summary {
+    padding-left: 2px;
+    color: #e6c2b8;
+    font-size: 12px;
+    font-weight: 750
+}
+
+.start-race {
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    width: 86px;
+    aspect-ratio: 1;
+    padding: 3px;
+    border: 2px solid #ffac91;
+    border-radius: 50%;
+    background: radial-gradient(circle at 38% 28%,#fb785e 0%,#d94a3d 54%,#a22d2e 100%);
+    box-shadow: 0 4px 20px #b7443e70,inset 0 0 0 4px #77302f62;
+    color: #fff5e9
+}
+
+.start-race .icon {
+    width: 36px;
+    height: 36px;
+    fill: currentColor;
+    stroke-width: 1
+}
+
+.start-race:hover {
+    background: radial-gradient(circle at 38% 28%,#ff9a74 0%,#eb624c 54%,#b93736 100%)
+}
+
+@media(max-width:760px), (orientation:portrait) and (max-width:1100px) {
+    .start-dock {
+        min-height: 78px;
+        padding-block: 7px 9px
+    }
+
+    .start-race {
+        width: 74px
+    }
+
+    .start-race .icon {
+        width: 31px;
+        height: 31px
+    }
+}
+
+@media(max-width:480px) {
+    .hero-route {
+        width: 126px;
+        margin-top: 5px
+    }
+}

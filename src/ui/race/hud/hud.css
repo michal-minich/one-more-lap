@@ -1,0 +1,296 @@
+@import "./speedometer.css";
+
+.race-top {
+    display: grid;
+    grid-template-columns: minmax(0,1fr) minmax(130px,270px) minmax(0,1fr);
+    gap: 12px;
+    justify-content: space-between;
+    align-items: start
+}
+
+.race-course {
+    text-shadow: 0 1px 10px #000, 0 1px 2px #000
+}
+
+.free-ride-label {
+    color: var(--paper);
+    font: 700 1.25rem var(--heading);
+    text-transform: uppercase;
+    text-shadow: 0 1px 5px #000b;
+}
+
+.race-course-info {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: clamp(14px,3vw,36px);
+    color: #e3ebd5;
+    font-size: 11px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums
+}
+
+.race-metric {
+    display: grid;
+    gap: 2px
+}
+
+.race-metric strong {
+    font: 700 clamp(20px,3vw,29px)/1 var(--heading);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap
+}
+
+.race-metric>span {
+    color: #f5e5dc;
+    font-size: 11px;
+    font-weight: 700
+}
+
+.lap-metric {
+    align-items: start
+}
+
+#progress {
+    width: 54px;
+    height: 3px;
+    margin-top: 2px
+}
+
+.race-side {
+    position: absolute;
+    top: max(76px,calc(env(safe-area-inset-top) + 56px));
+    left: max(16px,env(safe-area-inset-left));
+    width: clamp(92px,14vw,156px);
+    display: grid;
+    gap: 6px
+}
+
+.race-map {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 2px 3px #160f18a6)
+}
+
+.race-audio,.pause-audio {
+    display: flex;
+    gap: 5px
+}
+
+progress {
+    width: 100%;
+    height: 5px;
+    accent-color: var(--accent)
+}
+
+.race-readout {
+    --readout-padding: 6px;
+
+    align-self: end;
+    display: grid;
+    grid-template-columns: minmax(max-content,1fr) minmax(100px,220px) minmax(max-content,1fr);
+    grid-template-areas: "instruments pace condition";
+    align-items: end;
+    gap: 12px;
+    padding-inline: var(--readout-padding);
+    text-shadow: 0 1px 12px #000
+}
+
+.race-instruments {
+    grid-area: instruments;
+    display: flex;
+    align-items: end;
+    gap: 12px
+}
+
+.race-readout span {
+    font-size: 12px;
+    font-weight: 700
+}
+
+.clocks {
+    display: grid;
+    grid-template-columns: repeat(2,max-content);
+    gap: 12px;
+    padding-bottom: 3px
+}
+
+#pace {
+    grid-area: pace;
+    display: grid;
+    gap: 5px
+}
+
+#pace>div:first-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 6px
+}
+
+#pace-delta {
+    font-size: 11px;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap
+}
+
+#pace-delta[data-pace="behind"] {
+    color: #ffb2aa
+}
+
+#pace-delta[data-pace="ahead"] {
+    color: #d1f49a
+}
+
+.pace-bar {
+    position: relative;
+    height: 5px;
+    border-radius: 8px;
+    background: linear-gradient(90deg,#e24b42,#91483c 48%,#626747 52%,#a0c765)
+}
+
+.pace-bar::before,.pace-bar i {
+    position: absolute;
+    top: -3px;
+    bottom: -3px;
+    left: 50%;
+    width: 2px;
+    transform: translateX(-50%);
+    border-radius: 3px
+}
+
+.pace-bar::before {
+    content: "";
+    background: #191b1a
+}
+
+.pace-bar i {
+    width: 4px;
+    background: #fff3da;
+    box-shadow: 0 0 4px #000a
+}
+
+.condition {
+    grid-area: condition;
+    width: min(164px,100%);
+    justify-self: end;
+    text-align: right
+}
+
+.condition progress {
+    accent-color: #f59a63
+}
+
+.race-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 8px
+}
+
+.race-stats .race-metric:first-child {
+    text-align: left
+}
+
+.race-wallet {
+    gap: 4px
+}
+
+.race-wallet b {
+    font-weight: inherit
+}
+
+#race-earned {
+    color: #ffdf86
+}
+
+#damage-state {
+    display: block;
+    color: #ffd491
+}
+
+.race-actions {
+    display: flex;
+    gap: 6px;
+    justify-content: flex-end
+}
+
+#quick-recover {
+    min-height: 44px;
+    border-color: #7e917a
+}
+
+@media(max-width:800px) {
+    .race-top {
+        grid-template-columns: auto minmax(90px,1fr) auto
+    }
+}
+
+@media(max-width:480px) {
+    .race-top {
+        gap: 6px
+    }
+    .race-actions {
+        gap: 4px
+    }
+}
+
+@media(max-width:650px) {
+    .race-top {
+        grid-template-columns: 1fr auto;
+        row-gap: 4px
+    }
+    .race-course {
+        grid-row: 2;
+        grid-column: 1 / -1;
+        justify-self: center;
+        width: clamp(100px,38vw,176px)
+    }
+    .race-top .quiet {
+        min-height: 42px;
+        min-width: 38px;
+        padding: 6px 7px
+    }
+    .race-top .quiet span {
+        display: none
+    }
+    .race-readout {
+        grid-template-columns: minmax(0,1fr) auto;
+        --readout-padding: 2px;
+
+        grid-template-areas: ". pace" "instruments condition";
+        gap: 7px
+    }
+    .race-instruments {
+        gap: 6px
+    }
+    #pace {
+        justify-self: end;
+        width: min(164px,100%)
+    }
+    .clocks {
+        grid-template-columns: 1fr;
+        gap: 3px
+    }
+    .clocks>div {
+        display: flex;
+        gap: 4px;
+        align-items: baseline
+    }
+    .race-stats {
+        gap: 6px
+    }
+    .clocks span,#pace span {
+        font-size: 10px
+    }
+}
+
+@media(max-width:360px) {
+    .race-ui {
+        --race-left: max(7px,env(safe-area-inset-left));
+
+        padding-right: max(7px,env(safe-area-inset-right))
+    }
+    .race-top .quiet { width: 38px; min-width: 34px }
+    .race-readout .clocks>div { display: grid; gap: 1px }
+}
